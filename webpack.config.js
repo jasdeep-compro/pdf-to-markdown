@@ -23,13 +23,15 @@ module.exports = {
         path: BUILD_DIR,
         filename: 'bundle.js'
     },
+        // for enabling source maps,un-comment the below line
+    devtool: "source-map",
     module: {
         rules: [
             {
                 // Ask webpack to check: If this file ends with .js, then apply some transforms
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                include: [JAVASCRIPT_DIR],
+                exclude: /node_modules/,
             },
             {
                 test: /\.css$/,
@@ -90,7 +92,7 @@ module.exports = {
                     },
                 ]
             }
-        ),
+),
         new CopyWebpackPlugin(
             {
                 patterns: [
